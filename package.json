@@ -1,0 +1,18 @@
+{
+  "name": "array-utils",
+  "version": "1.0.0",
+  "description": "Array utilities",
+  "main": "index.js",
+  "private": false,
+  "scripts": {
+    "test": "node index.js"
+  },
+  "keywords": [],
+  "author": "Ónodi Miklós",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/onodi-miklos/array-utils.git"
+  },
+  "type": "module"
+}
