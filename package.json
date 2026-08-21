@@ -14,5 +14,8 @@
     "type": "git",
     "url": "https://github.com/onodi-miklos/array-utils.git"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  }
 }
