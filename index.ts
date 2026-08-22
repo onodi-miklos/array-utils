@@ -1,4 +1,4 @@
-const selectArray = function <T,> (activeArray: T[]): Object {
+export const selectArray = function <T,> (activeArray: T[]): Object {
     return {
         array: function (): T[] {
             return activeArray
@@ -17,8 +17,5 @@ const selectArray = function <T,> (activeArray: T[]): Object {
         // copyWithin: function (target: number, start: number = 0, end: number = activeArray.length): Object {
 
         // }
-        
     }
 }
-
-export default selectArray
