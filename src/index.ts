@@ -3,9 +3,6 @@ export function selectArray <T,> (activeArray: T[]) {
         array: function (): T[] {
             return activeArray
         },
-        at: function (index: number): T|undefined {
-            return activeArray[index]
-        },
         concat: function (arrays: T[][]) {
             for (const array of arrays) {
                 for (const item of array) {
