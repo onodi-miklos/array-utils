@@ -78,6 +78,17 @@ export function selectArray <T,> (activeArray: T[]): Object {
           }
 
           return selectArray(activeArray)
+        },
+        filter: function (this: T[], callback: (element: T, index?: number, array?: T[]) => boolean, thisValue: any) {
+          const filteredArray: T[] = []
+
+          for (let i: number = 0; i < this.length; i++) {
+            if (callback.call(thisValue, this[i]! )) {
+              filteredArray.push(this[i]!)
+            }
+          }
+
+          return selectArray(filteredArray)
         }
     }
 }
