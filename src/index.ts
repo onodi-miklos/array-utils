@@ -1,9 +1,9 @@
-export function selectArray <T,> (activeArray: T[]) {
+export function selectArray <T,> (activeArray: T[]): Object {
     return {
         array: function (): T[] {
             return activeArray
         },
-        concat: function (arrays: T[][]) {
+        concat: function (arrays: T[][]): Object {
             for (const array of arrays) {
                 for (const item of array) {
                     activeArray.push(item)
@@ -11,7 +11,7 @@ export function selectArray <T,> (activeArray: T[]) {
             }
             return selectArray(activeArray)
         },
-        copyWithin: function (target: number, start: number = 0, end: number = activeArray.length) {
+        copyWithin: function (target: number, start: number = 0, end: number = activeArray.length): Object {
           target = Math.floor(target)
           if (target > activeArray.length) {
             target = activeArray.length
@@ -22,7 +22,6 @@ export function selectArray <T,> (activeArray: T[]) {
               target = 0
             }
           }
-
           start = Math.floor(start)
           if (start > activeArray.length) {
             start = activeArray.length
@@ -33,7 +32,6 @@ export function selectArray <T,> (activeArray: T[]) {
               start = 0
             }
           }
-
           end = Math.floor(end)
           if (end > activeArray.length) {
             end = activeArray.length
@@ -44,11 +42,39 @@ export function selectArray <T,> (activeArray: T[]) {
               end = 0
             }
           }
-          
+
           const copy: T[] = activeArray.slice(start, end)
 
           for (let i: number = start; i < end; i++) {
             activeArray[target + i - start] = copy[i - start]!
+          }
+
+          return selectArray(activeArray)
+        },
+        fill: function (value: T, start: number = 0, end: number = activeArray.length): Object {
+          start = Math.floor(start)
+          if (start > activeArray.length) {
+            start = activeArray.length
+          }
+          if (start < 0) {
+            start = activeArray.length + start
+            if (start < 0) {
+              start = 0
+            }
+          }
+          end = Math.floor(end)
+          if (end > activeArray.length) {
+            end = activeArray.length
+          }
+          if (end < 0) {
+            end = activeArray.length + end
+            if (end < 0) {
+              end = 0
+            }
+          }
+
+          for (let i: number = start; i < end; i++) {
+            activeArray[i] = value
           }
 
           return selectArray(activeArray)
