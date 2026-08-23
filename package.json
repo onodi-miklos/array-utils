@@ -2,10 +2,10 @@
   "name": "array-utils",
   "version": "1.0.0",
   "description": "Array utilities",
-  "main": "index.js",
+  "main": "dist/index.js",
   "private": false,
   "scripts": {
-    "test": "node index.js"
+    "test": "tsc && node dist/index.js"
   },
   "keywords": [],
   "author": "Ónodi Miklós",
