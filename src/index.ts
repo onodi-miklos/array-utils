@@ -1,9 +1,9 @@
-export function selectArray <T,> (activeArray: T[]): Object {
+export function selectArray <T,> (activeArray: T[]) {
     return {
         array: function (): T[] {
             return activeArray
         },
-        concat: function (arrays: T[][]): Object {
+        concat: function (arrays: T[][]) {
             for (const array of arrays) {
                 for (const item of array) {
                     activeArray.push(item)
@@ -11,7 +11,7 @@ export function selectArray <T,> (activeArray: T[]): Object {
             }
             return selectArray(activeArray)
         },
-        copyWithin: function (target: number, start: number = 0, end: number = activeArray.length): Object {
+        copyWithin: function (target: number, start: number = 0, end: number = activeArray.length) {
           target = Math.floor(target)
           if (target > activeArray.length) {
             target = activeArray.length
@@ -51,7 +51,7 @@ export function selectArray <T,> (activeArray: T[]): Object {
 
           return selectArray(activeArray)
         },
-        fill: function (value: T, start: number = 0, end: number = activeArray.length): Object {
+        fill: function (value: T, start: number = 0, end: number = activeArray.length) {
           start = Math.floor(start)
           if (start > activeArray.length) {
             start = activeArray.length
@@ -89,6 +89,33 @@ export function selectArray <T,> (activeArray: T[]): Object {
           }
 
           return selectArray(filteredArray)
+        },
+        flat: function (depth: number = 1) {
+          depth = Math.floor(depth)
+          if (depth < 0 || Number.isNaN(depth)) {
+            depth = 0
+          }
+
+          let currentArray: T[] = activeArray
+
+          for (let i: number = 1; i <= depth; i++) {
+            const nextArray: T[] = []
+
+            for (const item of currentArray) {
+              if (!Array.isArray(item)) {
+                nextArray.push(item)
+              } else {
+                for (const subItem of item) {
+                  nextArray.push(subItem)
+                }
+              }
+            }
+
+            currentArray = nextArray
+
+          }
+
+          return selectArray(currentArray)
         }
     }
 }
