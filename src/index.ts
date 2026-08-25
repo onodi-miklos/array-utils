@@ -79,7 +79,7 @@ export function selectArray <T,> (activeArray: T[]) {
 
           return selectArray(activeArray)
         },
-        filter: function (this: T[], callback: (element: T, index?: number, array?: T[]) => boolean, thisValue: any) {
+        filter: function (this: T[], callback: (currentValue: T, index?: number, array?: T[]) => boolean, thisValue: any) {
           const filteredArray: T[] = []
 
           for (let i: number = 0; i < this.length; i++) {
@@ -113,9 +113,17 @@ export function selectArray <T,> (activeArray: T[]) {
 
             currentArray = nextArray
 
+            if (!currentArray.some(item => Array.isArray(item))) {
+              break
+            }
+
           }
 
+
           return selectArray(currentArray)
+        },
+        flatMap: function (this: T[], callback: (currentValue: T, index?: number, array?: T[]) => T[], thisValue: any) {
+          
         }
     }
 }
